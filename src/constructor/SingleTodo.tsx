@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MdCancel, MdDelete, MdDone, MdEdit } from "react-icons/md";
+import { MdCancel, MdDelete, MdDone, MdEdit, MdSave } from "react-icons/md";
 import swal from "sweetalert";
 import { Todo } from "../interface/model";
 
@@ -46,28 +46,35 @@ const SingleTodo: React.FC<Props> = ({ todo, todos, setTodos }) => {
                   setEditTodo(e.target.value);
                 }}
               />
-              <button type="submit" className="btn btn-primary d-none">
-                Save
-              </button>
             </div>
           ) : (
             <span className="w-100">{todo.todo}</span>
           )}
         </div>
         <div className="col-md-2">
-          <span
-            className="btn btn-secondary"
-            onClick={() => {
-              if (!edit && !todo.isDone) {
-                setEdit(!edit);
-              }
-              if (!edit && todo.isDone) {
-                swal("Error", "Plese Add this task to UnComplteTask", "error");
-              }
-            }}
-          >
-            <MdEdit />
-          </span>
+          {!edit && !todo.isDone ? (
+            <span
+              className="btn btn-secondary"
+              onClick={() => {
+                if (!edit && !todo.isDone) {
+                  setEdit(!edit);
+                }
+                if (!edit && todo.isDone) {
+                  swal(
+                    "Error",
+                    "Plese Add this task to UnComplteTask",
+                    "error"
+                  );
+                }
+              }}
+            >
+              <MdEdit />
+            </span>
+          ) : (
+            <button type="submit" className="btn btn-success">
+              <MdSave />
+            </button>
+          )}
         </div>
         <div className="col-md-2">
           <button

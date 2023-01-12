@@ -12,7 +12,7 @@ const InputFeild = ({ todo, setTodo, handleAdd }: Props) => {
       <div className="row">
         <div className="col-md-11">
           <input
-            type="text"
+            type="input"
             placeholder="Enter Task"
             className="form-control"
             value={todo}
